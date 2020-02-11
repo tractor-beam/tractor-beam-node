@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  tractor-beam:
+    image: tractor-beam-node
+    command: npm run debug
+    volumes:
+      - ./app:/server/app
+      - ./config:/server/config
+      - ./db:/data
+    ports:
+      - "4000:4000"
+      - "5858:5858"

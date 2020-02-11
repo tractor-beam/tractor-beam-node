@@ -1,0 +1,28 @@
+{
+  "name": "tractor-beam-node",
+  "version": "1.0.0",
+  "description": "Tractor beam usenet downloader written in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon --legacy-watch --watch ./app --inspect=0.0.0.0:5858 --nolazy ./index.js",
+    "docker-debug": "docker-compose up"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^8.0.6",
+    "config": "^3.2.5",
+    "fast-xml-parser": "^3.16.0",
+    "got": "^10.4.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "sequelize": "^5.21.3",
+    "sqlite3": "^4.1.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
