@@ -1,6 +1,5 @@
 const Router = require('@koa/router');
 const TMDB = require('./tmdb');
-const Newznab = require('./newznab');
 
 function init(config) {
   const router = new Router();

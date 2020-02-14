@@ -12,8 +12,11 @@ class Newznab {
     this.apiKey = options.apiKey;
   }
   async capabilities() {
-    const xmlResult = await got(`${this.url}/api?t=caps`).body;
-    console.log(xmlResult);
+    const xmlResult = await got(`${this.url}/api?t=caps`);
+    const jsonResult = parser.parse(xmlResult.body);
+    return {
+      data: jsonResult,
+    };
   }
   async searchByName(name) {
     const xmlResult = await got(`${this.url}/api?apikey=${this.apiKey}&t=search&q=${name}`);

@@ -32,10 +32,7 @@ function init(config) {
     ctx.body = results;
   });
   router.get('/nzb', async (ctx) => {
-    const nzbgeek = new Newznab({
-      url: 'https://api.nzbgeek.info',
-      apiKey: config.get('NZB_GEEK_KEY'),
-    });
+    const nzbgeek = new Newznab({ url: config.get('NEWZNAB_URL'), apiKey: config.get('NEWZNAB_KEY') });
     if (ctx.query.name) {
       const results = await nzbgeek.searchByName(ctx.query.name);
       ctx.body = results;

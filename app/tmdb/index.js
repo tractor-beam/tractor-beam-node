@@ -25,8 +25,8 @@ class TMDB {
 
   async movie(id) {
     let path = `${API_URL}/movie/${id}?api_key=${this.options.apiKey}`;
-    const results = await got(path).json();
-    return results;
+    const result = await got(path).json();
+    return _convertMovieToCommonMetadata(result);
   }
 
   async tv(id) {
@@ -47,18 +47,21 @@ function _convertToCommonMetadata(results) {
     output.page = results.page;
     output.pages = results.total_pages;
     output.total = results.total_results;
-    output.data = results.results.map((result) => {
-      return {
-        id: result.id,
-        title: result.title,
-        original_title: result.original_title,
-        summary: result.overview,
-        poster_url: `${POSTER_URL}${result.poster_path}`,
-        backdrop_url: `${BACKDROP_URL}${result.backdrop_path}`,
-      };
-    });
+    output.data = results.results.map((result) => _convertMovieToCommonMetadata(result));
   }
   return output;
+}
+
+function _convertMovieToCommonMetadata(result) {
+  return {
+    id: result.id,
+    title: result.title,
+    original_title: result.original_title,
+    summary: result.overview,
+    poster_url: `${POSTER_URL}${result.poster_path}`,
+    backdrop_url: `${BACKDROP_URL}${result.backdrop_path}`,
+    imdb_id: result.imdb_id,
+  };
 }
 
 module.exports = TMDB;
